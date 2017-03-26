@@ -9,6 +9,7 @@ class GroupsController < ApplicationController
   end
    def show
      @group = Group.find(params[:id])
+     @posts = @group.posts.order("created_at DESC")
   end
 
   def create
@@ -36,7 +37,7 @@ class GroupsController < ApplicationController
 
 
   def destroy
-    
+
     @group.destroy
     flash[:alert] = "Group deleted"
     redirect_to groups_path
